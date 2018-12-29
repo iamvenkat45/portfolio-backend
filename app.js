@@ -17,11 +17,17 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/TodoApp',
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE,
   useNewUrlParser: true
+}).then(()=> {
+  console.log('Connected to database successfully');
 });
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// // view engine setup
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
+
+// Create link to Angular build directory
+var distDir = __dirname + "/dist/portfolio/";
+app.use(express.static(distDir, {redirect: false}));
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -36,7 +42,6 @@ app.use((req, res, next)=> {
   next();
 });
 
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/socialLinks', socialLinksRouter);
 

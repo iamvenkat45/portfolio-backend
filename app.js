@@ -21,10 +21,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/TodoApp',
   console.log('Connected to database successfully');
 });
 
-// // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
-
 // Create link to Angular build directory
 var distDir = __dirname + "/dist/portfolio/";
 app.use(express.static(distDir, {redirect: false}));
